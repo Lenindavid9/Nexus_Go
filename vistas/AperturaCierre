@@ -1,0 +1,242 @@
+package nexus;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+public class AperturaCierre extends JPanel {
+    private JPanel principal, apertura, cierre, confirmacion, infoCierre, infoApertura,infoConfirmacion, CalcularC;
+    private JLabel imgApertura, tituloA, imgCierre, tituloC, lblsubC, lblMontoA, lbltxtMontoA,lblMontoVT, lbltxtMontoTV
+            , tituloConf, lblsubConf, lblMontoF;
+    private JButton btnApertura, btnCierre, btnCalcular;
+    private JTextField txtMontoF;
+    
+    private final Color COLOR_DORADO = new Color(184, 134, 11);
+
+    public JPanel VistaCaja() {
+        
+        this.setLayout(new BorderLayout());
+        // panel superior
+        
+        
+        //panel principal
+        principal = new JPanel();
+        principal.setLayout(new BoxLayout(principal, BoxLayout.Y_AXIS));
+        principal.setBackground(Color.WHITE);
+        principal.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        
+        // panel apertura 
+        
+        apertura = new JPanel();
+        apertura.setBackground(Color.WHITE);
+        apertura.setPreferredSize(new Dimension(900, 200));
+        apertura.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+        
+        imgApertura = new JLabel(new ImageIcon("apertura.png"));
+        imgApertura.setPreferredSize(new Dimension(400, 250));
+        imgApertura.setMaximumSize(new Dimension(300, 200));
+        
+        infoApertura = new JPanel();
+        infoApertura.setBackground(Color.WHITE);
+        infoApertura.setPreferredSize(new Dimension(400, 270));
+        infoApertura.setLayout(new BoxLayout(infoApertura, BoxLayout.Y_AXIS));
+
+// Titulo
+
+        tituloA = new JLabel("Apertura de Caja");
+        tituloA.setFont(new Font("SansSerif", Font.BOLD, 33));
+        tituloA.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+// Subtítulo
+        JLabel lblsubA = new JLabel("Registra el monto con el que inicia el día.");
+        lblsubA.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        lblsubA.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+// Texto “Registre Monto Inicial”
+        JLabel lblMontoInicial = new JLabel("Registre Monto Inicial");
+        lblMontoInicial.setFont(new Font("SansSerif", Font.BOLD, 14));
+        lblMontoInicial.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+// Campo de texto
+        JTextField txtMontoInicial = new JTextField("$0");
+        txtMontoInicial.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        txtMontoInicial.setPreferredSize(new Dimension(320, 40));   
+        txtMontoInicial.setMaximumSize(new Dimension(320, 40));     
+        txtMontoInicial.setAlignmentX(Component.LEFT_ALIGNMENT); 
+        
+// Botón dorado
+        btnApertura = new JButton("Realizar Apertura");
+        btnApertura.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        btnApertura.setBackground(COLOR_DORADO); 
+        btnApertura.setForeground(Color.WHITE);
+        btnApertura.setMaximumSize(new Dimension(180, 50));
+        btnApertura.setPreferredSize(new Dimension(150, 40)); 
+        btnApertura.setBorder(null);
+        
+        apertura.add(imgApertura);
+        infoApertura.add(tituloA);
+        infoApertura.add(Box.createVerticalStrut(10));
+        infoApertura.add(lblsubA);
+        infoApertura.add(Box.createVerticalStrut(40));
+        infoApertura.add(lblMontoInicial);
+        infoApertura.add(txtMontoInicial);
+        infoApertura.add(Box.createVerticalStrut(35));
+        infoApertura.add(btnApertura);
+        apertura.add(infoApertura);
+
+        
+        //panel cierre
+        cierre = new JPanel();
+        cierre.setBackground(Color.WHITE);
+        cierre.setPreferredSize(new Dimension(900, 200));
+        cierre.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+        
+        infoCierre = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        infoCierre.setBackground(Color.WHITE);
+        infoCierre.setPreferredSize(new Dimension(400, 270));
+        infoCierre.setLayout(new BoxLayout(infoCierre, BoxLayout.Y_AXIS));
+
+        
+// Titulo
+
+        tituloC = new JLabel("Cierre de Caja");
+        tituloC.setFont(new Font("SansSerif", Font.BOLD, 33));
+        tituloC.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+// Subtítulo
+        lblsubC = new JLabel("Registra el total final del día y cierra la jornada.");
+        lblsubC.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        lblsubC.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        
+// Botón dorado
+        btnCierre = new JButton("Realizar Apertura");
+        btnCierre.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        btnCierre.setBackground(COLOR_DORADO); 
+        btnCierre.setForeground(Color.WHITE);
+        btnCierre.setMaximumSize(new Dimension(180, 50));
+        btnCierre.setPreferredSize(new Dimension(150, 40)); 
+        btnCierre.setBorder(null);
+        
+// Texto 
+        lblMontoA = new JLabel("Monto de Apertura");
+        lblMontoA.setFont(new Font("SansSerif", Font.BOLD, 14));
+        lblMontoA.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        lbltxtMontoA = new JLabel("$0");
+        lbltxtMontoA.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        lbltxtMontoA.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        lblMontoVT = new JLabel("Monto de Ventas Totales");
+        lblMontoVT.setFont(new Font("SansSerif", Font.BOLD, 14));
+        lblMontoVT.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        lbltxtMontoTV = new JLabel("$0");
+        lbltxtMontoTV.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        lbltxtMontoTV.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        imgCierre = new JLabel(new ImageIcon("cierre.png"));
+        imgCierre.setPreferredSize(new Dimension(400, 250));
+        imgCierre.setMaximumSize(new Dimension(300, 200));
+        
+        infoCierre.add(tituloC);
+        infoCierre.add(Box.createVerticalStrut(10));
+        infoCierre.add(lblsubC);
+        infoCierre.add(Box.createVerticalStrut(20));
+        infoCierre.add(btnCierre);
+        infoCierre.add(Box.createVerticalStrut(20));
+        infoCierre.add(lblMontoA);
+        infoCierre.add(lbltxtMontoA);
+        infoCierre.add(Box.createVerticalStrut(15));
+        infoCierre.add(lblMontoVT);
+        infoCierre.add(lbltxtMontoTV);
+
+        cierre.add(infoCierre);
+        cierre.add(Box.createHorizontalStrut(20));
+        cierre.add(imgCierre);
+        
+        //panel confirmacion 
+        
+        confirmacion = new JPanel();
+        confirmacion.setBackground(Color.WHITE);
+        confirmacion.setPreferredSize(new Dimension(900, 200));
+        confirmacion.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+        
+        
+        infoConfirmacion = new JPanel();
+        infoConfirmacion.setLayout(new BoxLayout(infoConfirmacion, BoxLayout.Y_AXIS));
+        infoConfirmacion.setAlignmentY(Component.CENTER_ALIGNMENT);
+        infoConfirmacion.setBackground(Color.WHITE);
+        infoConfirmacion.setPreferredSize(new Dimension(400, 270));
+        infoConfirmacion.setLayout(new BoxLayout(infoConfirmacion, BoxLayout.Y_AXIS));
+        
+        
+        
+        tituloConf = new JLabel("Confirmacion de Cierre");
+        tituloConf.setFont(new Font("SansSerif", Font.BOLD, 33));
+        tituloConf.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+// Subtítulo
+        lblsubConf = new JLabel("Confirma el monto final y finaliza la jornada.");
+        lblsubConf.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        lblsubConf.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        CalcularC = new JPanel();
+        CalcularC.setLayout(new BoxLayout(CalcularC, BoxLayout.Y_AXIS));
+        CalcularC.setBackground(Color.WHITE);
+        CalcularC.setPreferredSize(new Dimension(400, 270));
+        CalcularC.setLayout(new BoxLayout(CalcularC, BoxLayout.Y_AXIS));
+        
+        lblMontoF = new JLabel("Ingrese el monto físico en caja");
+        lblMontoF.setFont(new Font("SansSerif", Font.BOLD, 14));
+        lblMontoF.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+// Campo de texto
+        txtMontoF = new JTextField("$0");
+        txtMontoF.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        txtMontoF.setPreferredSize(new Dimension(320, 40));   
+        txtMontoF.setMaximumSize(new Dimension(320, 40));     
+        txtMontoF.setAlignmentX(Component.LEFT_ALIGNMENT); 
+        
+        btnCalcular = new JButton("Calcular Cierre");
+        btnCalcular.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        btnCalcular.setBackground(COLOR_DORADO); 
+        btnCalcular.setForeground(Color.WHITE);
+        btnCalcular.setMaximumSize(new Dimension(180, 50));
+        btnCalcular.setPreferredSize(new Dimension(150, 40)); 
+        btnCalcular.setBorder(null);
+        infoConfirmacion.add(Box.createVerticalGlue());
+        infoConfirmacion.add(tituloConf);
+        infoConfirmacion.add(lblsubConf);
+        infoConfirmacion.add(Box.createVerticalGlue());
+        confirmacion.add(infoConfirmacion);
+        
+        
+        CalcularC.add(Box.createVerticalGlue());  
+        CalcularC.add(lblMontoF);
+        CalcularC.add(txtMontoF);
+        CalcularC.add(Box.createVerticalStrut(20));
+        CalcularC.add(btnCalcular);
+        confirmacion.add(CalcularC);
+        CalcularC.add(Box.createVerticalGlue()); 
+        
+        principal.add(apertura);
+        principal.add(cierre);
+        principal.add(confirmacion);
+        
+        this.add(principal, BorderLayout.CENTER);
+        return this;
+    }
+}
