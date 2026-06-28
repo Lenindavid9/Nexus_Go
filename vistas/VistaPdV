@@ -1,0 +1,220 @@
+package nexus;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+/**
+ *
+ * @author INGRID
+ */
+public class VistaPdV extends JPanel{
+    
+    private JPanel titulo, menu, principal,panelproductos,panelBusqueda,tarjeta,
+            AccionesT;
+    private JLabel logoyNombre, TituloPrincipal, estado, seccion,lblImagen,lblTitulo,
+            lblPrecio;
+    private JButton btnInicioTitulo, btnReportes,btnInicio, btnProductos, btnServicios,btnBuscar,
+            btnAgregar;
+    private JTextField buscar;
+
+    private final Color COLOR_CAFE_OSCURO = new Color(62, 58, 46);
+    private final Color COLOR_DORADO = new Color(223, 205, 141);
+
+    public JPanel VistaNexus() {
+        this.setLayout(new BorderLayout());
+        this.setBackground(Color.white);
+//Panel Superior 
+        titulo = new JPanel(new BorderLayout());
+        titulo.setBackground(COLOR_CAFE_OSCURO);
+        titulo.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+
+        Icon iconLogo = new ImageIcon("logo.png"); 
+        logoyNombre = new JLabel("Punto de Venta - N E X U S", iconLogo, SwingConstants.LEFT);
+        logoyNombre.setForeground(Color.WHITE);
+        logoyNombre.setFont(new Font("SansSerif", Font.BOLD, 22));
+        titulo.add(logoyNombre, BorderLayout.WEST);
+
+        JPanel OpcTitulo = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
+        OpcTitulo.setOpaque(false);
+        
+//Opciones Panel Superior
+
+        btnInicioTitulo = new JButton("Inicio");
+        btnInicioTitulo.setFont(new Font("SansSerif", Font.BOLD, 15));
+        btnInicioTitulo.setForeground(Color.WHITE);
+        btnInicioTitulo.setContentAreaFilled(false);
+        btnInicioTitulo.setBorderPainted(false);
+        
+        btnReportes = new JButton("Reportes");
+        btnReportes.setFont(new Font("SansSerif", Font.BOLD, 15));
+        btnReportes.setForeground(Color.WHITE);
+        btnReportes.setContentAreaFilled(false);
+        btnReportes.setBorderPainted(false);
+
+        OpcTitulo.add(btnInicioTitulo);
+        OpcTitulo.add(btnReportes);
+        titulo.add(OpcTitulo, BorderLayout.EAST);
+
+// Menu Lateral Izquierdo       
+   
+        menu = new JPanel();
+        menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
+        menu.setBackground(COLOR_DORADO);
+        menu.setPreferredSize(new Dimension(200, 0));
+        menu.setBorder(BorderFactory.createEmptyBorder(30, 15, 10, 15)); 
+        
+        btnInicio = new JButton("Inicio");
+        btnProductos = new JButton("Productos");
+        btnServicios = new JButton("Servicios");
+        BotonMenu(btnInicio);
+        BotonMenu(btnProductos);
+        BotonMenu(btnServicios);
+
+        menu.add(btnInicio);
+        menu.add(javax.swing.Box.createVerticalStrut(20)); 
+        menu.add(btnProductos);
+        menu.add(javax.swing.Box.createVerticalStrut(20));
+        menu.add(btnServicios);
+
+// Panel Contenido (tarjetas)        
+        
+        principal = new JPanel();
+        principal.setLayout(new BoxLayout(principal, BoxLayout.Y_AXIS));
+        principal.setBackground(Color.white);
+        principal.setBorder(BorderFactory.createEmptyBorder(0, 40, 50, 40));
+        
+
+// Titulos  y busqueda Panel Principal        
+        
+        TituloPrincipal = new JLabel("Punto de Venta");
+        TituloPrincipal.setFont(new Font("SansSerif", Font.BOLD, 32));
+        TituloPrincipal.setAlignmentX(CENTER_ALIGNMENT);
+        
+        estado = new JLabel("Estado: Ventas Habilitadas");
+        estado.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        estado.setAlignmentX(CENTER_ALIGNMENT);
+        
+        seccion = new JLabel("Productos / Servicios");
+        seccion.setFont(new Font("SansSerif", Font.BOLD, 26));
+        seccion.setAlignmentX(CENTER_ALIGNMENT);
+
+        panelBusqueda = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelBusqueda.setOpaque(false);
+        
+        buscar = new JTextField("Busca el Producto...", 40);
+        buscar.setBackground(new Color(245, 238, 213)); 
+        buscar.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+        
+        Icon iconLupa = new ImageIcon("lupa.png"); 
+        btnBuscar = new JButton(iconLupa);
+        btnBuscar.setPreferredSize(new Dimension(25, 25));
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setBorderPainted(false);
+        
+        panelBusqueda.add(buscar);
+        panelBusqueda.add(btnBuscar);
+
+//Grid Tarjetas      
+        
+        panelproductos = new JPanel(new GridLayout(1, 4, 75, 0));
+        panelproductos.setOpaque(false);
+        panelproductos.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        panelproductos.setPreferredSize(new Dimension(100, 300));
+
+//Contenido Tarjetas         
+        panelproductos.add(TarjetaProducto("Kit Capilar - REDKEN", "Und: $90.900", "producto1.png"));
+        panelproductos.add(TarjetaProducto("Corte de Pelo - NEXUS", "Und: $35.500", "servicio1.png"));
+        panelproductos.add(TarjetaProducto("Acondicionador all soft - REDKEN", "Und: $28.500", "producto2.png"));
+        panelproductos.add(TarjetaProducto("Balayage - NEXUS", "Und: $120.000", "servicio2.png"));
+        
+//Agg a Panel Principal 
+        principal.add(Box.createVerticalStrut(60));
+        principal.add(TituloPrincipal);
+        principal.add(Box.createVerticalStrut(5));
+        principal.add(estado);
+        principal.add(Box.createVerticalStrut(80));
+        principal.add(seccion);
+        principal.add(panelBusqueda);
+        principal.add(panelproductos);
+        
+        
+
+        this.add(titulo, BorderLayout.NORTH);
+        this.add(menu, BorderLayout.WEST);
+        this.add(principal, BorderLayout.CENTER);
+
+        return this;
+    }
+    
+//Ediciones Botones Menu Lateral
+
+    private void BotonMenu(JButton boton) {
+        boton.setFont(new Font("SansSerif", Font.BOLD, 16));
+        boton.setContentAreaFilled(false);
+        boton.setBorderPainted(false);
+        boton.setHorizontalAlignment(SwingConstants.LEFT);
+        boton.setAlignmentX(LEFT_ALIGNMENT);
+    }
+//Ediciones Tarjetas Panel Principal
+    
+    private JPanel TarjetaProducto(String titulo, String precio, String img) {
+        tarjeta = new JPanel();
+        tarjeta.setLayout(new BoxLayout(tarjeta, BoxLayout.Y_AXIS));
+        tarjeta.setBackground(Color.WHITE);
+        tarjeta.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+        tarjeta.setPreferredSize(new Dimension(200, 320));
+
+        Icon imgProducto = new ImageIcon(img);
+        lblImagen = new JLabel(imgProducto);
+        lblImagen.setPreferredSize(new Dimension(160, 250));
+        lblImagen.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+
+        lblTitulo = new JLabel(titulo);
+        lblTitulo.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(5, 8, 2, 8));
+        lblTitulo.setAlignmentX(LEFT_ALIGNMENT);
+
+        lblPrecio = new JLabel(precio);
+        lblPrecio.setFont(new Font("SansSerif", Font.BOLD, 15));
+        lblPrecio.setBorder(BorderFactory.createEmptyBorder(0, 8, 8, 8));
+        lblPrecio.setAlignmentX(LEFT_ALIGNMENT);
+
+        AccionesT = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
+        AccionesT.setOpaque(false);
+        AccionesT.setAlignmentX(LEFT_ALIGNMENT);
+
+        Icon Agg = new ImageIcon("agg.png");    
+        
+        btnAgregar = new JButton(Agg);
+        btnAgregar.setPreferredSize(new Dimension(20, 20));
+        btnAgregar.setContentAreaFilled(false);
+        btnAgregar.setBorderPainted(false);
+        JSpinner spinnerCantidad = new JSpinner(new SpinnerNumberModel(1, 1, 99, 1));
+        spinnerCantidad.setPreferredSize(new Dimension(50, 25));
+        AccionesT.add(btnAgregar);
+        AccionesT.add(spinnerCantidad);
+        tarjeta.add(lblImagen);
+        tarjeta.add(lblTitulo);
+        tarjeta.add(lblPrecio);
+        tarjeta.add(AccionesT);
+
+        return tarjeta;
+    }
+
+    
+    }
